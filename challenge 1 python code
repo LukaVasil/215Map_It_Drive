@@ -1,0 +1,80 @@
+vexcode_brain_precision = 0
+vexcode_console_precision = 0
+myVariable = 0
+message1 = Event()
+FWD = Event()
+LT = Event()
+RT = Event()
+BACK = Event()
+debug = False
+
+def onevent_FWD_0():
+    global myVariable, message1, FWD, LT, RT, BACK, debug, vexcode_brain_precision, vexcode_console_precision
+    if debug:
+        brain.screen.next_row()
+        brain.screen.print("FORWARD")
+    else:
+        motor_5.set_velocity(20, PERCENT)
+        motor_5.spin_for(FORWARD, 412, DEGREES)
+        wait(1, SECONDS)
+        motor_5.spin_for(FORWARD, 220, DEGREES)
+        wait(1, SECONDS)
+        motor_5.spin_for(FORWARD, 412, DEGREES)
+        wait(1, SECONDS)
+        motor_5.spin_for(REVERSE, 220, DEGREES)
+        wait(1, SECONDS)
+        motor_5.spin_for(FORWARD, 600, DEGREES)
+        wait(1, SECONDS)
+        motor_5.set_velocity(10, PERCENT)
+        wait(1, SECONDS)
+        motor_5.spin_for(REVERSE, 100, DEGREES)
+        wait(1, SECONDS)
+        motor_5.spin_for(REVERSE, 415, DEGREES)
+        wait(1, SECONDS)
+        motor_5.spin_for(FORWARD, 175, DEGREES)
+        wait(1, SECONDS)
+        motor_5.spin_for(FORWARD, 100, DEGREES)
+        wait(1, SECONDS)
+        motor_5.spin_for(REVERSE, 100, DEGREES)
+
+def onevent_FWD_1():
+    global myVariable, message1, FWD, LT, RT, BACK, debug, vexcode_brain_precision, vexcode_console_precision
+    if debug:
+        brain.screen.next_row()
+        brain.screen.print("FORWARD")
+    else:
+        motor_1.set_velocity(20, PERCENT)
+        motor_1.spin_for(FORWARD, 412, DEGREES)
+        wait(1, SECONDS)
+        motor_1.spin_for(REVERSE, 220, DEGREES)
+        wait(1, SECONDS)
+        motor_1.spin_for(FORWARD, 412, DEGREES)
+        wait(1, SECONDS)
+        motor_1.spin_for(FORWARD, 220, DEGREES)
+        wait(1, SECONDS)
+        motor_1.spin_for(FORWARD, 600, DEGREES)
+        wait(1, SECONDS)
+        motor_1.set_velocity(10, PERCENT)
+        wait(1, SECONDS)
+        motor_1.spin_for(FORWARD, 100, DEGREES)
+        wait(1, SECONDS)
+        motor_1.spin_for(REVERSE, 415, DEGREES)
+        wait(1, SECONDS)
+        motor_1.spin_for(REVERSE, 175, DEGREES)
+        wait(1, SECONDS)
+        motor_1.spin_for(FORWARD, 100, DEGREES)
+        wait(1, SECONDS)
+        motor_1.spin_for(FORWARD, 100, DEGREES)
+
+def when_started1():
+    global myVariable, message1, FWD, LT, RT, BACK, debug, vexcode_brain_precision, vexcode_console_precision
+    debug = False
+    FWD.broadcast()
+
+# system event handlers
+FWD(onevent_FWD_0)
+FWD(onevent_FWD_1)
+# add 15ms delay to make sure events are registered correctly.
+wait(15, MSEC)
+
+when_started1()
